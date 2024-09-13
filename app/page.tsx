@@ -1,56 +1,72 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@nextui-org/button';
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+function App() {
+    const [backgroundIndex, setBackgroundIndex] = useState(0);
 
-export default function Home() {
-  return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <h1 className={title()}>Make&nbsp;</h1>
-        <h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-        <br />
-        <h1 className={title()}>
-          websites regardless of your design experience.
-        </h1>
-        <h2 className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
-        </h2>
-      </div>
+    const backgrounds = [
+        'https://www.rfa.org/english/news/myanmar/signal-2024-09-13-other.jpeg/@@images/04094756-1594-4624-a926-0805a608d7a7.jpeg',
+        'https://floodlist.com/wp-content/uploads/2023/10/Floods-in-Bago-Myanmar-October-2023-Myanmar-Fire-Services-Department-3-343x187.jpg',
+        'https://www.netherlandswaterpartnership.com/sites/nwp_corp/files/styles/keyvisual_large/public/2019-09/DRR%20Myanmar%20900x450.jpg?h=a9f5c027&itok=dL4VtBnq',
+        'https://ichef.bbci.co.uk/news/976/cpsprodpb/EB52/production/_84624206_84624205.jpg',
+    ];
 
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
+    useEffect(() => {
+        function createRaindrops() {
+            const rain: any = document.querySelector('.rain');
+            for (let i = 0; i < 100; i++) {
+                const raindrop = document.createElement('div');
+                raindrop.classList.add('raindrop');
+                raindrop.style.left = `${Math.random() * 100}%`;
+                raindrop.style.animationDuration = `${0.5 + Math.random() * 0.5}s`;
+                raindrop.style.animationDelay = `${Math.random() * 2}s`;
+                rain.appendChild(raindrop);
+            }
+        }
+        createRaindrops();
 
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
-    </section>
-  );
+        const interval = setInterval(() => {
+            setBackgroundIndex(
+                (prevIndex) => (prevIndex + 1) % backgrounds.length
+            );
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [backgrounds.length]);
+
+    const dropFood = () => {
+        const food = document.createElement('div');
+        food.classList.add('food');
+        document.body.appendChild(food);
+
+        setTimeout(() => {
+            food.remove();
+        }, 2000);
+    };
+
+    return (
+        <div>
+            <div
+                className="background"
+                style={{
+                    backgroundImage: `url(${backgrounds[backgroundIndex]})`,
+                }}
+            ></div>
+            <div className="dark-overlay"></div>
+            <div className="overlay"></div>
+            <div className="rain"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="boat"></div>
+            <Button
+                className="z-10 font-bold bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+                onClick={dropFood}
+            >
+                Help Aid
+            </Button>
+        </div>
+    );
 }
+
+export default App;

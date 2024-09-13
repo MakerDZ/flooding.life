@@ -1,3 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {margin:0;padding:0;box-sizing:border-box;}
+html,body {width:100%;height:100%;}
+
+body {
+  overflow: hidden;
+  position: relative;
+  background-color: #87CEEB;
+}
+
+@keyframes zoomInOut {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+    50% {
+      transform: scale(1.1) translate(-10px, -10px); /* Slight zoom and movement */
+    }
+    100% {
+      transform: scale(1) translate(0, 0);
+    }
+  }
+  
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    transition: background-image 1s ease-in-out;
+    animation: zoomInOut 20s infinite ease-in-out;
+  }
+
+  .dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1; 
+    pointer-events: none; 
+  }
+   
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(135, 206, 235, 0.4), rgba(100, 149, 237, 0.4));
+}
+
+.rain {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
+  animation: rain 0.5s linear infinite;
+  z-index: 4;
+}
+
+.raindrop {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 1px;
+  height: 15px;
+  animation: fall 0.8s linear infinite;
+}
+
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 133%;
+  left: -50%;
+  bottom: -100%;
+  background: linear-gradient(135deg, rgba(79, 172, 254, 0.4), rgba(0, 242, 254, 0.4));
+  border-radius: 40%;
+  animation: flood 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+.wave:nth-child(2) {
+  animation-delay: -2s;
+  opacity: .3;
+}
+
+.boat {
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  left: 50%;
+  bottom: 30%;
+  transform: translateX(-50%);
+  animation: float 4s ease-in-out infinite;
+  z-index: 3;
+}
+
+.boat::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #8B4513;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+.boat::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 40px solid #FFFFFF;
+}
+
+.drop-food-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.food {
+  width: 20px;
+  height: 20px;
+  background-color: #FFD700;
+  border-radius: 50%;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  z-index: 4;
+  animation: dropFood 2s linear forwards;
+}
+
+@keyframes rain {
+  0% { transform: translateY(-50px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes fall {
+  0% { transform: translateY(-50px); }
+  100% { transform: translateY(calc(100vh + 50px)); }
+}
+
+@keyframes flood {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -15px); }
+}
+
+@keyframes dropFood {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(calc(70vh - 20px)); }
+}
+
+@media (max-width: 768px) {
+  .boat {
+    width: 70px;
+    height: 35px;
+  }
+  .boat::after {
+    top: -20px;
+    border-left-width: 17px;
+    border-right-width: 17px;
+    border-bottom-width: 28px;
+  }
+}
