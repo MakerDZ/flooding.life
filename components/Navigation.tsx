@@ -27,15 +27,26 @@ const Navigation = () => {
         router.push(path);
     };
 
+    const handleKeyDown = (
+        e: React.KeyboardEvent<HTMLDivElement>,
+        path: string
+    ) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            navigateTo(path);
+        }
+    };
+
     return (
         <nav className="h-full w-[69px] z-10 space-y-9 py-2">
             {navigation.map((Navi, index) => (
                 <div
-                    onClick={() => {
-                        navigateTo(Navi.path);
-                    }}
                     key={index}
+                    aria-label={`Navigate to ${Navi.path}`}
                     className={`flex flex-row justify-center cursor-pointer ${pathname == Navi.path ? 'text-[#5E5459]' : 'text-[#9AA4B4]'}`}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => navigateTo(Navi.path)}
+                    onKeyDown={(e) => handleKeyDown(e, Navi.path)}
                 >
                     {Navi.icon}
                 </div>

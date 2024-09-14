@@ -15,8 +15,10 @@ function App() {
     useEffect(() => {
         function createRaindrops() {
             const rain: any = document.querySelector('.rain');
+
             for (let i = 0; i < 100; i++) {
                 const raindrop = document.createElement('div');
+
                 raindrop.classList.add('raindrop');
                 raindrop.style.left = `${Math.random() * 100}%`;
                 raindrop.style.animationDuration = `${0.5 + Math.random() * 0.5}s`;
@@ -37,6 +39,7 @@ function App() {
 
     const dropFood = () => {
         const food = document.createElement('div');
+
         food.classList.add('food');
         document.body.appendChild(food);
 
@@ -52,13 +55,13 @@ function App() {
                 style={{
                     backgroundImage: `url(${backgrounds[backgroundIndex]})`,
                 }}
-            ></div>
-            <div className="dark-overlay"></div>
-            <div className="overlay"></div>
-            <div className="rain"></div>
-            <div className="wave"></div>
-            <div className="wave"></div>
-            <div className="boat"></div>
+            />
+            <div className="dark-overlay" />
+            <div className="overlay" />
+            <div className="rain" />
+            <div className="wave" />
+            <div className="wave" />
+            <div className="boat" />
             <Button
                 className="z-10 font-bold bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
                 onClick={dropFood}
