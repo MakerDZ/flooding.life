@@ -1,10 +1,9 @@
 import '@/styles/globals.css';
 import { Metadata } from 'next';
-
-import { Providers } from './providers';
-
+import { Providers } from '../providers/next-ui';
 import { siteConfig } from '@/config/site';
 import Navigation from '@/components/Navigation';
+import { QueryProviders } from '@/providers/QueryProvider';
 
 export const metadata: Metadata = {
     title: {
@@ -27,12 +26,14 @@ export default function RootLayout({
             <head />
             <body className="min-h-screen font-nunito">
                 <Providers>
-                    <div className="relative flex flex-col h-screen">
-                        <main className="flex flex-row w-full h-full py-5 pr-5 bg-white z-50">
-                            <Navigation />
-                            {children}
-                        </main>
-                    </div>
+                    <QueryProviders>
+                        <div className="relative flex flex-col h-screen">
+                            <main className="flex flex-row w-full h-full py-5 pr-5 bg-white z-50">
+                                <Navigation />
+                                {children}
+                            </main>
+                        </div>
+                    </QueryProviders>
                 </Providers>
             </body>
         </html>

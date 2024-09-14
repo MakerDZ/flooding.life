@@ -1,9 +1,13 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { Button } from '@nextui-org/button';
+import { BsFillQuestionCircleFill } from 'react-icons/bs';
+import { useDisclosure } from '@nextui-org/modal';
+import { WhatsHappeningModal } from '@/components/home/WhatsHappeningModal';
 
 function App() {
     const [backgroundIndex, setBackgroundIndex] = useState(0);
+    const happeningModal = useDisclosure();
 
     const backgrounds = [
         'https://www.rfa.org/english/news/myanmar/signal-2024-09-13-other.jpeg/@@images/04094756-1594-4624-a926-0805a608d7a7.jpeg',
@@ -49,26 +53,41 @@ function App() {
     };
 
     return (
-        <div className="w-full relative rounded-2xl">
-            <div
-                className="background"
-                style={{
-                    backgroundImage: `url(${backgrounds[backgroundIndex]})`,
-                }}
+        <>
+            <div className="w-full relative rounded-2xl">
+                <div
+                    className="background"
+                    style={{
+                        backgroundImage: `url(${backgrounds[backgroundIndex]})`,
+                    }}
+                />
+                <div className="dark-overlay" />
+                <div className="overlay" />
+                <div className="rain" />
+                <div className="wave" />
+                <div className="wave" />
+                <img className="boat" src="/Kid.svg" />
+                <div className="p-4 flex flex-row space-x-3 items-center">
+                    <Button
+                        className="z-10 font-bold bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+                        onClick={dropFood}
+                    >
+                        Send Aid
+                    </Button>
+                    <div
+                        onClick={happeningModal.onOpen}
+                        className="z-50 cursor-pointer opacity-50"
+                    >
+                        <BsFillQuestionCircleFill size={21} />
+                    </div>
+                </div>
+            </div>
+            <WhatsHappeningModal
+                closeIt={happeningModal.onClose}
+                isOpen={happeningModal.isOpen}
+                onOpenChange={happeningModal.onOpenChange}
             />
-            <div className="dark-overlay" />
-            <div className="overlay" />
-            <div className="rain" />
-            <div className="wave" />
-            <div className="wave" />
-            <div className="boat" />
-            <Button
-                className="z-10 font-bold bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-                onClick={dropFood}
-            >
-                Help Aid
-            </Button>
-        </div>
+        </>
     );
 }
 
