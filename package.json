@@ -8,7 +8,10 @@
         "dev": "next dev --turbo",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
+        "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix",
+        "db:push": "npx dotenv -e .env.local -- prisma db push",
+        "db:generate": "npx dotenv -e .env.local -- prisma generate",
+        "db:view": "npx dotenv -e .env.local -- prisma studio"
     },
     "dependencies": {
         "@nextui-org/button": "2.0.37",
@@ -22,16 +25,19 @@
         "@nextui-org/switch": "2.0.33",
         "@nextui-org/system": "2.2.5",
         "@nextui-org/theme": "2.2.9",
+        "@prisma/client": "^5.19.1",
         "@react-aria/ssr": "3.9.4",
         "@react-aria/visually-hidden": "3.8.12",
         "clsx": "2.1.1",
         "framer-motion": "~11.1.1",
         "intl-messageformat": "^10.5.0",
         "next": "14.2.4",
+        "next-safe-action": "7.0.1-next.2",
         "next-themes": "^0.2.1",
         "react": "18.3.1",
         "react-dom": "18.3.1",
-        "react-icons": "^5.3.0"
+        "react-icons": "^5.3.0",
+        "zod": "^3.23.8"
     },
     "devDependencies": {
         "@types/node": "20.5.7",
@@ -54,6 +60,7 @@
         "eslint-plugin-unused-imports": "^3.2.0",
         "postcss": "8.4.38",
         "prettier": "^3.2.5",
+        "prisma": "^5.16.2",
         "tailwind-variants": "0.1.20",
         "tailwindcss": "3.4.3",
         "typescript": "5.0.4"
