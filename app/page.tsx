@@ -46,7 +46,7 @@ function App() {
     };
 
     return (
-        <div>
+        <div className="w-full relative">
             <div
                 className="background"
                 style={{
