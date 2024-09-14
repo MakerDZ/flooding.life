@@ -28,7 +28,7 @@ const Navigation = () => {
     };
 
     return (
-        <nav className="h-full w-[69px] bg-white z-10 space-y-9 py-2">
+        <nav className="h-full w-[69px] z-10 space-y-9 py-2">
             {navigation.map((Navi, index) => (
                 <div
                     onClick={() => {

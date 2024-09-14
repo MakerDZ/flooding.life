@@ -46,7 +46,7 @@ function App() {
     };
 
     return (
-        <div className="w-full relative">
+        <div className="w-full relative rounded-2xl">
             <div
                 className="background"
                 style={{
