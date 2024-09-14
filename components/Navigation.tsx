@@ -37,7 +37,7 @@ const Navigation = () => {
     };
 
     return (
-        <nav className="h-full w-[69px] z-10 space-y-9 py-2">
+        <nav className="h-full min-w-[69px] z-10 space-y-9 py-2">
             {navigation.map((Navi, index) => (
                 <div
                     key={index}
