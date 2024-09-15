@@ -46,7 +46,11 @@ export const DropAIDModal = (prop: ModalProp) => {
                             </div>
                         </ModalHeader>
                         <ModalBody className="">
-                            {DonorData?.abilityToDropAid && <div>Drop</div>}
+                            You can now drop the AID. We've created this
+                            animation to give you the feeling that you're
+                            actively helping during the crisis. What you choose
+                            to drop here won’t affect the focus of the
+                            donations.
                         </ModalBody>
                     </>
                 )}

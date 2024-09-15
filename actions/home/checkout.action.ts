@@ -24,7 +24,7 @@ const checkoutAction = async () => {
                 httpOnly: true,
                 sameSite: 'strict',
             });
-
+            console.log('should creating the token right here.');
             await Donor.create(donorToken);
             const donate = await donateAction(donorToken);
             return donate;

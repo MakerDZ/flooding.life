@@ -24,8 +24,10 @@ async function create(token: string) {
                 sessionId: token,
             },
         });
+        console.log(newDonor);
         return newDonor;
     } catch (err) {
+        console.log(err);
         throw new Error('Error adding new donor to the database.');
     }
 }
@@ -42,8 +44,8 @@ async function donateRecord(donor: {
             },
             data: {
                 donationCount: { increment: 1 },
-                abilityToWish: 0,
-                abilityToDropAid: 0,
+                abilityToWish: { increment: 1 },
+                abilityToDropAid: { increment: 1 },
                 totalDonatedAmount: { increment: donor.donationAmount },
                 email: donor.email,
             },

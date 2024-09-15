@@ -29,10 +29,9 @@ const sendAIDValidate = async () => {
             };
         }
 
-        // needing to check the count for both.
         return {
             success:
-                isDonor.abilityToDropAid || isDonor.abilityToWish
+                isDonor.abilityToDropAid > 0 || isDonor.abilityToWish > 0
                     ? true
                     : false,
             donationCount: isDonor.donationCount,

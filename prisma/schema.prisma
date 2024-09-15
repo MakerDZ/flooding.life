@@ -11,8 +11,8 @@ model Donor {
   id                 String       @id @default(auto()) @map("_id") @db.ObjectId
   email              String? //for the purpose of re-checking their donation history
   sessionId          String       @unique
-  totalDonatedAmount Int?
-  donationCount      Int?
+  totalDonatedAmount Int          @default(0)
+  donationCount      Int          @default(0)
   abilityToWish      Int          @default(0)
   abilityToDropAid   Int          @default(0)
   wishletter         WishLetter[]
