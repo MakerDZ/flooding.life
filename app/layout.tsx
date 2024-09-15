@@ -30,7 +30,7 @@ export default function RootLayout({
                     <QueryProviders>
                         <div className="relative overflow-hidden flex flex-col h-screen">
                             <main className="flex flex-row w-full h-full py-5 pr-5 bg-white z-50">
-                                <BackgroundMusic />
+                                {/* <BackgroundMusic /> */}
                                 <Navigation />
                                 {children}
                             </main>

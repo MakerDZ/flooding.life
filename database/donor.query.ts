@@ -24,7 +24,6 @@ async function create(token: string) {
                 sessionId: token,
             },
         });
-        console.log(newDonor);
         return newDonor;
     } catch (err) {
         console.log(err);
@@ -38,7 +37,7 @@ async function donateRecord(donor: {
     donationAmount: number;
 }) {
     try {
-        const updatedDonateRecord = await db.donor.update({
+        await db.donor.update({
             where: {
                 sessionId: donor.token,
             },
@@ -50,7 +49,6 @@ async function donateRecord(donor: {
                 email: donor.email,
             },
         });
-        console.log(updatedDonateRecord);
     } catch (err) {
         throw new Error('Error while creating donate record.');
     }

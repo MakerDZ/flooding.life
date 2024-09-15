@@ -18,6 +18,29 @@ interface ModalProp {
     data?: any;
 }
 
+const ImageDb = [
+    {
+        image: '/Water.svg',
+        title: 'Water',
+        animation: 'bouncing',
+    },
+    {
+        image: '/rice.svg',
+        title: 'rice',
+        animation: 'rotate',
+    },
+    {
+        image: '/clothes.svg',
+        title: 'clothes',
+        animation: 'scale',
+    },
+    {
+        image: '/AidKit.svg',
+        title: 'AidKit',
+        animation: 'shake',
+    },
+];
+
 export const DropAIDModal = (prop: ModalProp) => {
     const { DonorData, isDonorDataLoading } = useDonorData();
 
@@ -46,11 +69,27 @@ export const DropAIDModal = (prop: ModalProp) => {
                             </div>
                         </ModalHeader>
                         <ModalBody className="">
-                            You can now drop the AID. We've created this
-                            animation to give you the feeling that you're
-                            actively helping during the crisis. What you choose
-                            to drop here won’t affect the focus of the
-                            donations.
+                            <p className="text-[#4C5766]">
+                                You can now drop the AID. We've created this
+                                animation to give you the feeling that you're
+                                actively helping during the crisis. What you
+                                choose to drop here won’t affect the focus of
+                                the donations.
+                            </p>
+                            <div className="flex flex-row gap-2 my-3">
+                                {ImageDb.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-gray-100 rounded-lg p-2 cursor-pointer"
+                                    >
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            className={`w-[120px] h-[100px] ${item.animation}`}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
                         </ModalBody>
                     </>
                 )}
