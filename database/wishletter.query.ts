@@ -3,7 +3,6 @@ import { db } from '@/lib/database';
 async function create(donor: {
     id: string;
     heroName: string;
-    heroPfp: string;
     letter: string;
     socialLink: string;
 }) {
@@ -11,7 +10,6 @@ async function create(donor: {
         const newLetter = await db.wishLetter.create({
             data: {
                 heroName: donor.heroName,
-                heroPfp: donor.heroPfp,
                 letter: donor.letter,
                 socialLink: donor.socialLink,
                 Donor: {

@@ -24,7 +24,6 @@ model Donor {
 model WishLetter {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   heroName   String
-  heroPfp    String
   letter     String
   socialLink String
 

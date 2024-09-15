@@ -40,7 +40,6 @@ const createWishLetterAction = actionClient
             const wishLetter = await WishLetter.create({
                 id: donor.id,
                 heroName: name,
-                heroPfp: 'https://avatar.iran.liara.run/public',
                 letter,
                 socialLink,
             });

@@ -5,7 +5,7 @@ export default async function Hero() {
     const letters = await getLettersAction();
     const cardData = letters.map((letter, index) => {
         return {
-            id: index,
+            id: `${index}`,
             type: 'custom',
             position: { x: 0, y: 0 },
             data: {
@@ -13,6 +13,7 @@ export default async function Hero() {
             },
         };
     });
+    console.log(cardData);
 
     return <WishLetterDisplay cardData={cardData} />;
 }

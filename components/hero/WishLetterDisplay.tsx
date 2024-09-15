@@ -2,7 +2,6 @@
 import { ReactFlow, Background } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { useNodeFlow } from '@/hooks/useNodeFlow';
-import { data } from '@/app/hero/Card';
 
 export default function WishLetterDisplay({ cardData }: { cardData: any }) {
     const { canvasSize, nodeTypes, nodes, onNodesChange } =
