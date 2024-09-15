@@ -1,3 +1,4 @@
+import { Donor } from '@/database/donor.query';
 import crypto from 'crypto';
 import { NextResponse } from 'next/server';
 
@@ -28,12 +29,18 @@ export async function POST(req: Request, res: Response) {
 
         // Logic according to event
         if (eventType === 'order_created') {
-            const userId = body.meta.custom_data.user_id;
+            const donorToken = body.meta.custom_data.donorToken;
+            const donorEmail = body.data.attributes.user_email;
+            const donationAmount = body.data.attributes.total;
             const isSuccessful = body.data.attributes.status === 'paid';
 
             if (isSuccessful) {
-                console.log('successfully donated.');
-                console.log(body);
+                //add to database.
+                await Donor.donateRecord({
+                    token: donorToken,
+                    email: donorEmail,
+                    donationAmount,
+                });
             }
         }
         return NextResponse.json({

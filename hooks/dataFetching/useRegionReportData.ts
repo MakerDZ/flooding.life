@@ -1,4 +1,4 @@
-import fetchRegionReport from '@/actions/reports/fetchRegionReport';
+import fetchRegionReport from '@/actions/reports/fetchRegionReport.action';
 import { useQuery } from '@tanstack/react-query';
 
 const useRegionReportData = (region: string) => {
