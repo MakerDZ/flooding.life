@@ -81,9 +81,37 @@ async function droppedAID(token: string) {
     }
 }
 
+async function wroteLetter(token: string) {
+    try {
+        const donor = await db.donor.findUnique({
+            where: {
+                sessionId: token,
+            },
+        });
+
+        if (donor && donor.abilityToWish > 0) {
+            const updatedDonor = await db.donor.update({
+                where: {
+                    sessionId: token,
+                },
+                data: {
+                    abilityToWish: donor.abilityToWish - 1,
+                },
+            });
+
+            return updatedDonor;
+        } else {
+            throw new Error('No remaining ability to drop aid.');
+        }
+    } catch (err) {
+        throw new Error('Error while reducing the AID drop count.');
+    }
+}
+
 export const Donor = {
     existence,
     create,
     donateRecord,
     droppedAID,
+    wroteLetter,
 };

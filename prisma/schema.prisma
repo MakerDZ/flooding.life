@@ -22,11 +22,11 @@ model Donor {
 }
 
 model WishLetter {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  heroName    String
-  heroPfp     String
-  letter      String
-  twitterLink String
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  heroName   String
+  heroPfp    String
+  letter     String
+  socialLink String
 
   Donor   Donor?  @relation(fields: [donorId], references: [id])
   donorId String? @db.ObjectId

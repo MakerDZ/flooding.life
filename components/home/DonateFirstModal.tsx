@@ -83,7 +83,7 @@ export const DonateFirstModal = (prop: ModalProp) => {
                             <p className="text-[#4C5766]">
                                 After donating, you can write a wish for the
                                 Burmese people, linked to your Twitter profile,
-                                and it will appear publicly in the hero section.
+                                and it will appear publicly in the hero page.
                                 You&apos;ll also able to experience an animation
                                 to feel actively involved in the crisis relief.
                             </p>
