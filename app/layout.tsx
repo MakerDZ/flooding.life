@@ -4,6 +4,7 @@ import { Providers } from '../providers/next-ui';
 import { siteConfig } from '@/config/site';
 import Navigation from '@/components/Navigation';
 import { QueryProviders } from '@/providers/QueryProvider';
+import BackgroundMusic from '@/components/BackgroundMusic';
 
 export const metadata: Metadata = {
     title: {
@@ -27,8 +28,9 @@ export default function RootLayout({
             <body className="min-h-screen font-nunito">
                 <Providers>
                     <QueryProviders>
-                        <div className="relative flex flex-col h-screen">
+                        <div className="relative overflow-hidden flex flex-col h-screen">
                             <main className="flex flex-row w-full h-full py-5 pr-5 bg-white z-50">
+                                <BackgroundMusic />
                                 <Navigation />
                                 {children}
                             </main>

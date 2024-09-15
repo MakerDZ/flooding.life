@@ -18,6 +18,29 @@ interface ModalProp {
     data?: any;
 }
 
+const ImageDb = [
+    {
+        image: '/Water.svg',
+        title: 'Water',
+        animation: 'bouncing',
+    },
+    {
+        image: '/rice.svg',
+        title: 'rice',
+        animation: 'rotate',
+    },
+    {
+        image: '/clothes.svg',
+        title: 'clothes',
+        animation: 'scale',
+    },
+    {
+        image: '/AidKit.svg',
+        title: 'AidKit',
+        animation: 'shake',
+    },
+];
+
 export const DonateFirstModal = (prop: ModalProp) => {
     const donateNow = async () => {
         const checkout = await checkoutAction();
@@ -57,6 +80,21 @@ export const DonateFirstModal = (prop: ModalProp) => {
                                 to the areas in need through those
                                 organizations.
                             </p>
+
+                            <div className="flex flex-row gap-2 my-3">
+                                {ImageDb.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-gray-100 rounded-lg p-2 cursor-pointer"
+                                    >
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            className={`w-[120px] h-[100px] ${item.animation}`}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
                         </ModalBody>
                         <ModalFooter>
                             <Button
