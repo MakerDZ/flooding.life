@@ -8,7 +8,6 @@ import {
     ModalBody,
     ModalFooter,
 } from '@nextui-org/modal';
-import MyanmarMap from '../MyanmarMap';
 
 interface ModalProp {
     closeIt?: any;

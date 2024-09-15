@@ -7,11 +7,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Hero {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  pfp         String
-  wish        String
+model Donor {
+  id                 String       @id @default(auto()) @map("_id") @db.ObjectId
+  email              String //for the purpose of re-checking their donation history
+  sessionId          String       @unique
+  totalDonatedAmount Int
+  donationCount      Int
+  abilityToWish      Boolean
+  wishletter         WishLetter[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WishLetter {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  heroName    String
+  heroPfp     String
+  letter      String
   twitterLink String
-  createdAt   DateTime @default(now())
+
+  Donor   Donor?  @relation(fields: [donorId], references: [id])
+  donorId String? @db.ObjectId
+
+  createdAt DateTime @default(now())
 }
