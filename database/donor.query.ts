@@ -54,8 +54,36 @@ async function donateRecord(donor: {
     }
 }
 
+async function droppedAID(token: string) {
+    try {
+        const donor = await db.donor.findUnique({
+            where: {
+                sessionId: token,
+            },
+        });
+
+        if (donor && donor.abilityToDropAid > 0) {
+            const updatedDonor = await db.donor.update({
+                where: {
+                    sessionId: token,
+                },
+                data: {
+                    abilityToDropAid: donor.abilityToDropAid - 1,
+                },
+            });
+
+            return updatedDonor;
+        } else {
+            throw new Error('No remaining ability to drop aid.');
+        }
+    } catch (err) {
+        throw new Error('Error while reducing the AID drop count.');
+    }
+}
+
 export const Donor = {
     existence,
     create,
     donateRecord,
+    droppedAID,
 };

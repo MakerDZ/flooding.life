@@ -80,6 +80,13 @@ export const DonateFirstModal = (prop: ModalProp) => {
                                 to the areas in need through those
                                 organizations.
                             </p>
+                            <p className="text-[#4C5766]">
+                                After donating, you can write a wish for the
+                                Burmese people, linked to your Twitter profile,
+                                and it will appear publicly in the hero section.
+                                You&apos;ll also able to experience an animation
+                                to feel actively involved in the crisis relief.
+                            </p>
 
                             <div className="flex flex-row gap-2 my-3">
                                 {ImageDb.map((item, index) => (

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Modal,
     ModalContent,
@@ -10,12 +10,14 @@ import {
 } from '@nextui-org/modal';
 import useDonorData from '@/hooks/dataFetching/useDonorData';
 import { Spinner } from '@nextui-org/spinner';
+import { Button } from '@nextui-org/button';
+import droppedAIDAction from '@/actions/home/droppedAID.action';
 
 interface ModalProp {
     closeIt?: any;
     isOpen: any;
     onOpenChange: any;
-    data?: any;
+    dropFood: (supply: 'Water' | 'rice' | 'clothes' | 'AidKit') => void;
 }
 
 const ImageDb = [
@@ -43,6 +45,9 @@ const ImageDb = [
 
 export const DropAIDModal = (prop: ModalProp) => {
     const { DonorData, isDonorDataLoading } = useDonorData();
+    const [selectedAid, setSelectedAid] = useState<
+        'Water' | 'rice' | 'clothes' | 'AidKit'
+    >('Water');
 
     useEffect(() => {
         console.log(DonorData);
@@ -70,27 +75,48 @@ export const DropAIDModal = (prop: ModalProp) => {
                         </ModalHeader>
                         <ModalBody className="">
                             <p className="text-[#4C5766]">
-                                You can now drop the AID. We've created this
-                                animation to give you the feeling that you're
-                                actively helping during the crisis. What you
-                                choose to drop here won’t affect the focus of
-                                the donations.
+                                You can now select the AID to drop. We&apos;ve
+                                created this animation to give you the feeling
+                                that you&apos;re actively helping during the
+                                crisis. What you choose to drop here won&apos;t
+                                affect the focus of the donations.
                             </p>
                             <div className="flex flex-row gap-2 my-3">
                                 {ImageDb.map((item, index) => (
-                                    <div
+                                    <button
                                         key={index}
-                                        className="bg-gray-100 rounded-lg p-2 cursor-pointer"
+                                        className={`bg-gray-100 rounded-lg p-2 cursor-pointer ${selectedAid == item.title ? 'border-1 border-[#EB9C3E]' : ''}`}
+                                        onClick={() => {
+                                            setSelectedAid(
+                                                item.title as
+                                                    | 'Water'
+                                                    | 'rice'
+                                                    | 'clothes'
+                                                    | 'AidKit'
+                                            );
+                                        }}
                                     >
                                         <img
                                             src={item.image}
                                             alt={item.title}
-                                            className={`w-[120px] h-[100px] ${item.animation}`}
+                                            className={`w-[120px] h-[100px] ${item.animation} `}
                                         />
-                                    </div>
+                                    </button>
                                 ))}
                             </div>
                         </ModalBody>
+                        <ModalFooter>
+                            <Button
+                                onClick={async () => {
+                                    prop.closeIt();
+                                    prop.dropFood(selectedAid);
+                                    await droppedAIDAction();
+                                }}
+                                className={`z-10 font-bold bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg `}
+                            >
+                                Drop Aid
+                            </Button>
+                        </ModalFooter>
                     </>
                 )}
             </ModalContent>

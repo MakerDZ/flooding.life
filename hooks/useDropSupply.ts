@@ -3,7 +3,6 @@ import { useRef, useState } from 'react';
 type foodSupply = 'Water' | 'rice' | 'clothes' | 'AidKit';
 
 const useDropSupply = (confettiRef: React.RefObject<any>) => {
-    
     const [showConfetti, setShowConfetti] = useState(false);
 
     const dropFood = (supply: foodSupply) => {

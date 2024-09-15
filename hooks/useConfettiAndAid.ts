@@ -5,17 +5,15 @@ import useDropSupply from '@/hooks/useDropSupply';
 export function useConfettiAndAid() {
     const confettiRef = useRef(null);
     const happeningModal = useDisclosure();
-    const sendAIDModal = useDisclosure();
-    const donateFirstModal = useDisclosure();
+    const writeWishModal = useDisclosure();
 
     const { dropFood, showConfetti } = useDropSupply(confettiRef);
 
     return {
         confettiRef,
         happeningModal,
-        donateFirstModal,
         dropFood,
         showConfetti,
-        sendAIDModal,
+        writeWishModal,
     };
 }

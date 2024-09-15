@@ -30,10 +30,7 @@ const sendAIDValidate = async () => {
         }
 
         return {
-            success:
-                isDonor.abilityToDropAid > 0 || isDonor.abilityToWish > 0
-                    ? true
-                    : false,
+            success: isDonor.abilityToDropAid > 0 ? true : false,
             donationCount: isDonor.donationCount,
             abilityToWish: isDonor.abilityToWish,
             abilityToDropAid: isDonor.abilityToDropAid,
