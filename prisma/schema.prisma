@@ -9,11 +9,12 @@ datasource db {
 
 model Donor {
   id                 String       @id @default(auto()) @map("_id") @db.ObjectId
-  email              String //for the purpose of re-checking their donation history
+  email              String? //for the purpose of re-checking their donation history
   sessionId          String       @unique
-  totalDonatedAmount Int
-  donationCount      Int
-  abilityToWish      Boolean
+  totalDonatedAmount Int?
+  donationCount      Int?
+  abilityToWish      Boolean      @default(false)
+  abilityToDropAid   Boolean      @default(false)
   wishletter         WishLetter[]
 
   createdAt DateTime @default(now())

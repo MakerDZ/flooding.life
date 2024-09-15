@@ -1,19 +1,13 @@
 'use client';
 
 import useRegionReportData from '@/hooks/dataFetching/useRegionReportData';
-
 import selectedReportStore from '@/store/selectedReport.store';
 import { Spinner } from '@nextui-org/spinner';
-import { useEffect } from 'react';
 
 export const ReportPCView = () => {
     const { selectedReport } = selectedReportStore();
     const { RegionReportData, isRegionReportDataLoading } =
         useRegionReportData(selectedReport);
-
-    useEffect(() => {
-        console.log(isRegionReportDataLoading);
-    }, [isRegionReportDataLoading]);
 
     if (isRegionReportDataLoading) {
         return (
