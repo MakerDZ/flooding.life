@@ -29,7 +29,7 @@ export const WhatsHappeningModal = (prop: ModalProp) => {
                     <>
                         <ModalHeader className="flex flex-col gap-1">
                             <p className="text-base text-[#505461] font-bold">
-                                What's Happening in Myanmar Right Now?
+                                What&apos;s Happening in Myanmar Right Now?
                             </p>
                         </ModalHeader>
                         <ModalBody className="space-y-3"></ModalBody>

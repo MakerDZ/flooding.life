@@ -66,7 +66,7 @@ function App() {
                 <div className="rain" />
                 <div className="wave" />
                 <div className="wave" />
-                <img className="boat" src="/Kid.svg" />
+                <img className="boat" src="/Kid.svg" alt="kid" />
                 <div className="p-4 flex flex-row space-x-3 items-center">
                     <Button
                         className="z-10 font-bold bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
@@ -74,12 +74,13 @@ function App() {
                     >
                         Send Aid
                     </Button>
-                    <div
+                    <button
+                        aria-label="What's happening?"
                         onClick={happeningModal.onOpen}
                         className="z-50 cursor-pointer opacity-50"
                     >
                         <BsFillQuestionCircleFill size={21} />
-                    </div>
+                    </button>
                 </div>
             </div>
             <WhatsHappeningModal
