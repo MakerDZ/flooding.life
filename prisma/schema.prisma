@@ -13,8 +13,8 @@ model Donor {
   sessionId          String       @unique
   totalDonatedAmount Int?
   donationCount      Int?
-  abilityToWish      Boolean      @default(false)
-  abilityToDropAid   Boolean      @default(false)
+  abilityToWish      Int          @default(0)
+  abilityToDropAid   Int          @default(0)
   wishletter         WishLetter[]
 
   createdAt DateTime @default(now())

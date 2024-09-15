@@ -3,13 +3,10 @@ import { useRef, useState } from 'react';
 type foodSupply = 'Water' | 'rice' | 'clothes' | 'AidKit';
 
 const useDropSupply = (confettiRef: React.RefObject<any>) => {
-    const [isAidButtonDisabled, setIsAidButtonDisabled] = useState(false);
+    
     const [showConfetti, setShowConfetti] = useState(false);
 
     const dropFood = (supply: foodSupply) => {
-        if (isAidButtonDisabled) return;
-
-        setIsAidButtonDisabled(true);
         const food = document.createElement('div');
         const foodImage = document.createElement('img');
 
@@ -27,12 +24,11 @@ const useDropSupply = (confettiRef: React.RefObject<any>) => {
 
             setTimeout(() => {
                 setShowConfetti(false);
-                setIsAidButtonDisabled(false);
             }, 500);
         }, 3000);
     };
 
-    return { dropFood, isAidButtonDisabled, showConfetti };
+    return { dropFood, showConfetti };
 };
 
 export default useDropSupply;

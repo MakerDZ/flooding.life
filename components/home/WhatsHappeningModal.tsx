@@ -31,7 +31,19 @@ export const WhatsHappeningModal = (prop: ModalProp) => {
                                 What&apos;s Happening in Myanmar Right Now?
                             </p>
                         </ModalHeader>
-                        <ModalBody className="space-y-3"></ModalBody>
+                        <ModalBody className="space-y-3 pb-4">
+                            <p className="text-[#4C5766]">
+                                In September 2024, Typhoon Yagi left 10+ cities
+                                in Myanmar suffering from severe floods. More
+                                than 230,000 people had to flee their homes with
+                                over 300+(still counting) deaths and over 400+(
+                                still counting) missing. Multiple families
+                                witnessed their loved ones and homes being
+                                swiped away by the deadly strong current while
+                                they had to cling to big trees for their dear
+                                lives.
+                            </p>
+                        </ModalBody>
                     </>
                 )}
             </ModalContent>

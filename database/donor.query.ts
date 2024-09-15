@@ -6,6 +6,9 @@ async function existence(token: string) {
             where: {
                 sessionId: token,
             },
+            include: {
+                wishletter: true,
+            },
         });
 
         return donor;

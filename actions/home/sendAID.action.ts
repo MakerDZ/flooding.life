@@ -12,6 +12,7 @@ const sendAIDValidate = async () => {
             donationCount: 0,
             abilityToWish: false,
             abilityToDropAid: false,
+            wishletter: [],
         };
     }
 
@@ -24,9 +25,11 @@ const sendAIDValidate = async () => {
                 donationCount: 0,
                 abilityToWish: false,
                 abilityToDropAid: false,
+                wishletter: [],
             };
         }
 
+        // needing to check the count for both.
         return {
             success:
                 isDonor.abilityToDropAid || isDonor.abilityToWish
@@ -35,6 +38,7 @@ const sendAIDValidate = async () => {
             donationCount: isDonor.donationCount,
             abilityToWish: isDonor.abilityToWish,
             abilityToDropAid: isDonor.abilityToDropAid,
+            wishletter: isDonor.wishletter,
         };
     } catch (err) {
         // Database validation failed. We're able to return error modal.
@@ -43,6 +47,7 @@ const sendAIDValidate = async () => {
             donationCount: 0,
             abilityToWish: false,
             abilityToDropAid: false,
+            wishletter: [],
         };
     }
 };

@@ -1,40 +1,12 @@
 'use client';
 import checkoutAction from '@/actions/home/checkout.action';
 import sendAIDValidate from '@/actions/home/sendAID.action';
+import { useSendAID } from '@/hooks/useSendAID';
 import { Button } from '@nextui-org/button';
-import {
-    Modal,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    useDisclosure,
-} from '@nextui-org/modal';
-import { useSearchParams } from 'next/navigation';
+import { Modal, ModalContent, ModalHeader, ModalBody } from '@nextui-org/modal';
 
 export default function Donate() {
-    const searchParams = useSearchParams();
-    const donorToken = searchParams.get('session');
-    const donateFirstModal = useDisclosure();
-    const dropAIDModal = useDisclosure();
-
-    const sendAID = async () => {
-        const donor = await sendAIDValidate();
-        if (!donor.success) {
-            donateFirstModal.onOpen();
-            return;
-        }
-        dropAIDModal.onOpen();
-    };
-
-    //Redirect checker after successful payment.
-    if (donorToken) {
-        (async () => {
-            const donor = await sendAIDValidate();
-            if (donor.success) {
-                dropAIDModal.onOpen();
-            }
-        })();
-    }
+    const { sendAID, donateFirstModal, dropAIDModal } = useSendAID();
 
     return (
         <>
