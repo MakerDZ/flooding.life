@@ -107,7 +107,13 @@ body {
   z-index: 3;
 }
 
-.boat::before {
+.food-image {
+  width: 200px;
+  height: 200px;
+  z-index: 200;
+}
+/* .boat::before {
+/* .boat::before {
   content: '';
   position: absolute;
   width: 100%;
@@ -127,7 +133,7 @@ body {
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
   border-bottom: 40px solid #FFFFFF;
-}
+} */
 
 .drop-food-btn {
   position: absolute;
@@ -141,7 +147,7 @@ body {
   cursor: pointer;
   z-index: 5;
 }
-
+/* 
 .food {
   position: absolute;
   width: 20px;
@@ -152,7 +158,18 @@ body {
   left: 50%;
   z-index: 200;
   animation: dropFood 2s linear forwards;
-}
+} */
+
+
+.food {
+  position: absolute;
+  border-radius: 50%;
+  top: 10px;
+  left: 45%;
+  z-index: 200;
+  animation: dropFood 7s linear forwards;
+} 
+
 
 @keyframes rain {
   0% { transform: translateY(-50px); }
@@ -174,9 +191,38 @@ body {
   50% { transform: translate(-50%, -15px); }
 }
 
+
 @keyframes dropFood {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(calc(70vh - 20px)); }
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  10% {
+    transform: translateY(calc(5vh)) translateX(-15px) rotate(-10deg);
+  }
+  20% {
+    transform: translateY(calc(15vh)) translateX(10px) rotate(10deg);
+  }
+  30% {
+    transform: translateY(calc(25vh)) translateX(-20px) rotate(-5deg);
+  }
+  40% {
+    transform: translateY(calc(35vh)) translateX(15px) rotate(15deg);
+  }
+  50% {
+    transform: translateY(calc(45vh)) translateX(-10px) rotate(-10deg);
+  }
+  60% {
+    transform: translateY(calc(55vh)) translateX(5px) rotate(5deg);
+  }
+  70% {
+    transform: translateY(calc(65vh)) translateX(-5px) rotate(-3deg);
+  }
+  80% {
+    transform: translateY(calc(70vh - 20px)) translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(calc(70vh - 20px)) rotate(0deg);
+  }
 }
 
 @media (max-width: 768px) {

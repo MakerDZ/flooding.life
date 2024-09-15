@@ -1,20 +1,26 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@nextui-org/button';
 import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { useDisclosure } from '@nextui-org/modal';
 import { WhatsHappeningModal } from '@/components/home/WhatsHappeningModal';
+import Confetti from '@/components/Confetti';
+import useDropSupply from '@/hooks/useDropSupply';
+
+const backgrounds = [
+    'https://www.rfa.org/english/news/myanmar/signal-2024-09-13-other.jpeg/@@images/04094756-1594-4624-a926-0805a608d7a7.jpeg',
+    'https://floodlist.com/wp-content/uploads/2023/10/Floods-in-Bago-Myanmar-October-2023-Myanmar-Fire-Services-Department-3-343x187.jpg',
+    'https://www.netherlandswaterpartnership.com/sites/nwp_corp/files/styles/keyvisual_large/public/2019-09/DRR%20Myanmar%20900x450.jpg?h=a9f5c027&itok=dL4VtBnq',
+    'https://ichef.bbci.co.uk/news/976/cpsprodpb/EB52/production/_84624206_84624205.jpg',
+];
 
 function App() {
     const [backgroundIndex, setBackgroundIndex] = useState(0);
     const happeningModal = useDisclosure();
+    const confettiRef = useRef(null);
 
-    const backgrounds = [
-        'https://www.rfa.org/english/news/myanmar/signal-2024-09-13-other.jpeg/@@images/04094756-1594-4624-a926-0805a608d7a7.jpeg',
-        'https://floodlist.com/wp-content/uploads/2023/10/Floods-in-Bago-Myanmar-October-2023-Myanmar-Fire-Services-Department-3-343x187.jpg',
-        'https://www.netherlandswaterpartnership.com/sites/nwp_corp/files/styles/keyvisual_large/public/2019-09/DRR%20Myanmar%20900x450.jpg?h=a9f5c027&itok=dL4VtBnq',
-        'https://ichef.bbci.co.uk/news/976/cpsprodpb/EB52/production/_84624206_84624205.jpg',
-    ];
+    const { dropFood, isAidButtonDisabled, showConfetti } =
+        useDropSupply(confettiRef);
 
     useEffect(() => {
         function createRaindrops() {
@@ -41,17 +47,6 @@ function App() {
         return () => clearInterval(interval);
     }, [backgrounds.length]);
 
-    const dropFood = () => {
-        const food = document.createElement('div');
-
-        food.classList.add('food');
-        document.body.appendChild(food);
-
-        setTimeout(() => {
-            food.remove();
-        }, 2000);
-    };
-
     return (
         <>
             <div className="w-full relative rounded-2xl">
@@ -69,8 +64,9 @@ function App() {
                 <img className="boat" src="/Kid.svg" alt="kid" />
                 <div className="p-4 flex flex-row space-x-3 items-center">
                     <Button
+                        disabled={isAidButtonDisabled}
                         className="z-10 font-bold bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-                        onClick={dropFood}
+                        onClick={() => dropFood('AidKit')}
                     >
                         Send Aid
                     </Button>
@@ -88,6 +84,7 @@ function App() {
                 isOpen={happeningModal.isOpen}
                 onOpenChange={happeningModal.onOpenChange}
             />
+            {showConfetti && <Confetti ref={confettiRef} />}
         </>
     );
 }
