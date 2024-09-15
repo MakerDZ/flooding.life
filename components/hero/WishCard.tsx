@@ -45,12 +45,12 @@ function CustomNode({ data }: CustomNodeProps) {
                         size={10}
                     />
                 </div>
-                <div
+                <button
                     onClick={FullWishModal.onOpen}
                     className="text-[10px] text-justify mt-2 text-[#454A55] line-clamp-4 w-full flex-1"
                 >
-                    {data.letter}
-                </div>
+                    <p className="w-full h-full">{data.letter}</p>
+                </button>
             </div>
             <FullWishTextModal
                 isOpen={FullWishModal.isOpen}

@@ -15,6 +15,7 @@ import { FaPaperPlane } from 'react-icons/fa';
 import useDonorData from '@/hooks/dataFetching/useDonorData';
 import { WriteWishModal } from '@/components/home/WriteWIshModal';
 
+export const dynamic = 'force-dynamic';
 function App() {
     const backgroundImage = useBackgroundSwitching(5000);
     useRaindrops();

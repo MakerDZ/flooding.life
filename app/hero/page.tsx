@@ -1,8 +1,18 @@
 import getLettersAction from '@/actions/wishLetter/getLetters.action';
 import WishLetterDisplay from '@/components/hero/WishLetterDisplay';
 
+interface Letter {
+    id: string;
+    heroName: string;
+    letter: string;
+    socialLink: string;
+    donorId: string | null;
+    createdAt: Date;
+}
+
+export const dynamic = 'force-dynamic';
 export default async function Hero() {
-    const letters = await getLettersAction();
+    const letters: Letter[] = await getLettersAction();
     const cardData = letters.map((letter, index) => {
         return {
             id: `${index}`,
@@ -13,7 +23,5 @@ export default async function Hero() {
             },
         };
     });
-    console.log(cardData);
-
     return <WishLetterDisplay cardData={cardData} />;
 }

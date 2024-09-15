@@ -5,6 +5,7 @@ import { siteConfig } from '@/config/site';
 import Navigation from '@/components/Navigation';
 import { QueryProviders } from '@/providers/QueryProvider';
 import BackgroundMusic from '@/components/BackgroundMusic';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
     title: {
@@ -32,7 +33,7 @@ export default function RootLayout({
                             <main className="flex flex-row w-full h-full py-5 pr-5 bg-white z-50">
                                 {/* <BackgroundMusic /> */}
                                 <Navigation />
-                                {children}
+                                <Suspense fallback={null}>{children}</Suspense>
                             </main>
                         </div>
                     </QueryProviders>

@@ -185,8 +185,6 @@ export const useNodeFlow = (data: any) => {
     };
 };
 
-
-
 // import WishCard from '@/components/hero/WishCard';
 // import { useNodesState } from '@xyflow/react';
 // import { useEffect, useState } from 'react';
