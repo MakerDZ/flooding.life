@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Modal,
     ModalContent,
@@ -9,7 +9,10 @@ import {
     ModalFooter,
 } from '@nextui-org/modal';
 import { Button } from '@nextui-org/button';
+import { useAction } from 'next-safe-action/hooks';
 import checkoutAction from '@/actions/home/checkout.action';
+import { Spinner } from '@nextui-org/spinner';
+import toast from 'react-hot-toast';
 
 interface ModalProp {
     closeIt?: any;
@@ -42,14 +45,16 @@ const ImageDb = [
 ];
 
 export const DonateFirstModal = (prop: ModalProp) => {
-    const donateNow = async () => {
-        const checkout = await checkoutAction();
-        if (!checkout.success) {
-            console.log('Failed To Donate because of system error.');
-            return;
+    const { execute, status, result } = useAction(checkoutAction);
+    useEffect(() => {
+        if (result.data?.checkoutURL && result.data.success) {
+            window.location.href = result.data.checkoutURL;
         }
-        window.location.href = checkout.checkoutURL!;
-    };
+
+        if (result.data?.checkoutURL == null && result.data?.success == false) {
+            toast.error(`${result.data?.message}`);
+        }
+    }, [result]);
 
     return (
         <Modal
@@ -105,10 +110,17 @@ export const DonateFirstModal = (prop: ModalProp) => {
                         </ModalBody>
                         <ModalFooter>
                             <Button
-                                onClick={donateNow}
-                                className="z-10 font-bold bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+                                disabled={status == 'executing'}
+                                onClick={() => {
+                                    execute();
+                                }}
+                                className="z-10 w-32 font-bold bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
                             >
-                                Donate Now
+                                {status == 'executing' ? (
+                                    <Spinner size="sm" color="warning" />
+                                ) : (
+                                    'Donate Now'
+                                )}
                             </Button>
                         </ModalFooter>
                     </>

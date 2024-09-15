@@ -3,8 +3,9 @@ import { generateAccessToken } from '@/utils/generateAccessToken';
 import { cookies } from 'next/headers';
 import donateAction from '../donate/donate.action';
 import { Donor } from '@/database/donor.query';
+import { actionClient } from '@/lib/safe-action';
 
-const checkoutAction = async () => {
+const checkoutAction = actionClient.action(async () => {
     try {
         const cookieStore = cookies();
         const donorToken = cookieStore.get('donorToken')?.value;
@@ -39,6 +40,6 @@ const checkoutAction = async () => {
             checkoutURL: null,
         };
     }
-};
+}); 
 
 export default checkoutAction;

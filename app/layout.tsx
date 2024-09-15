@@ -6,6 +6,7 @@ import Navigation from '@/components/Navigation';
 import { QueryProviders } from '@/providers/QueryProvider';
 import BackgroundMusic from '@/components/BackgroundMusic';
 import { Suspense } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
     title: {
@@ -34,6 +35,7 @@ export default function RootLayout({
                                 {/* <BackgroundMusic /> */}
                                 <Navigation />
                                 <Suspense fallback={null}>{children}</Suspense>
+                                <Toaster />
                             </main>
                         </div>
                     </QueryProviders>
