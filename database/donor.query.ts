@@ -42,8 +42,8 @@ async function donateRecord(donor: {
             },
             data: {
                 donationCount: { increment: 1 },
-                abilityToWish: true,
-                abilityToDropAid: true,
+                abilityToWish: 0,
+                abilityToDropAid: 0,
                 totalDonatedAmount: { increment: donor.donationAmount },
                 email: donor.email,
             },
